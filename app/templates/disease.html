@@ -1,0 +1,159 @@
+{% extends 'layout.html' %} {% block body %}
+
+<style>
+  html,
+  body {
+    background-color: rgb(206, 206, 228); /* Light background */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Form container styling */
+  .form-container {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 25px 20px;
+    background: linear-gradient(
+      to right,
+      #d8e2f2,
+      #e5e7f5
+    ); /* Gradient background */
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Heading Styling */
+  h2 {
+    text-align: center;
+    color: rgb(224, 13, 13); /* Red color for the heading */
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  /* Subheading Styling */
+  .subheading {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  /* Form field styling */
+  .form-group label {
+    font-size: 15px;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .form-control {
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1.5px solid #ccc;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+
+  /* Image Preview Styling */
+  #output-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+
+  /* Button Styling */
+  .btn-info {
+    width: 100%;
+    padding: 12px;
+    background-color: #00a86b;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-info:hover {
+    background-color: #007f4f;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 20px;
+    }
+
+    .subheading {
+      font-size: 13px;
+    }
+
+    .form-container {
+      width: 90%;
+    }
+
+    .btn-info {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<!-- Main Content Section -->
+<br />
+<h2>Disease Detection</h2>
+<p class="subheading">
+  Upload an image of your plant to help us identify the disease.
+</p>
+
+<!-- Form container -->
+<div class="form-container">
+  <form
+    method="POST"
+    action="{{ url_for('disease_prediction') }}"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <label for="file"><b>Upload Crop Image to detect disease</b></label>
+      <input
+        type="file"
+        class="form-control"
+        id="file"
+        name="file"
+        accept="image/*"
+        onchange="preview_image(event)"
+        required
+      />
+    </div>
+    <!-- Image Preview -->
+    <img id="output-image" class="rounded mx-auto d-block" />
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-info">Predict</button>
+    </div>
+  </form>
+</div>
+
+<script type="text/javascript">
+  function preview_image(event) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById("output-image");
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layout.html" %} {% block body %}
+
+<div class="container mt-5" style="max-width: 400px">
+  <!-- Sign Up Form -->
+  <h2 class="text-center text-primary">Sign Up</h2>
+
+  <!-- Display any flash messages (success or error) -->
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %}
+  <ul class="list-unstyled">
+    {% for category, message in messages %}
+    <li class="alert alert-{{ category }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %} {% endwith %}
+
+  <form method="POST" class="p-4 rounded shadow-sm bg-light">
+    <!-- Username input -->
+    <div class="form-group mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        id="username"
+        placeholder="Choose a username (e.g., johndoe123)"
+        value="{{ request.form.get('username') }}"
+        required
+      />
+    </div>
+
+    <!-- Email input -->
+    <div class="form-group mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        id="email"
+        placeholder="Enter a valid email (e.g., johndoe@example.com)"
+        value="{{ request.form.get('email') }}"
+        required
+      />
+    </div>
+
+    <!-- Password input -->
+    <div class="form-group mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        id="password"
+        placeholder="Choose a password (at least 6 characters)"
+        required
+      />
+    </div>
+
+    <!-- Confirm password input -->
+    <div class="form-group mb-4">
+      <label for="confirm_password" class="form-label">Re-Enter Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="confirm_password"
+        id="confirm_password"
+        placeholder="Re-enter password to confirm"
+        required
+      />
+    </div>
+
+    <!-- Submit button -->
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary btn-lg-1">Sign Up</button>
+    </div>
+  </form>
+
+  <!-- Already have an account link -->
+  <p class="text-center mt-4">
+    Already have an account?
+    <a href="{{ url_for('login') }}" class="link-primary">Login</a>
+  </p>
+</div>
+
+{% endblock %}

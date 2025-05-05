@@ -1,0 +1,183 @@
+{% extends 'layout.html' %} {% block body %}
+
+<style>
+  html body {
+    background-color: rgb(206, 206, 228); /* Light background color */
+    font-family: Arial, sans-serif;
+  }
+
+  /* Heading Styling */
+  h2 {
+    text-align: center;
+    color: rgb(224, 13, 13);
+    font-size: 28px; /* Slightly larger font size */
+    font-weight: 600; /* Bold but not too heavy */
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  /* Subheading Styling */
+  .subheading {
+    text-align: center;
+    font-size: 16px;
+    color: #333; /* Dark grey for the subheading */
+    margin-bottom: 20px; /* Spacing between heading and content */
+  }
+
+  /* Form container styling */
+  .form-container {
+    width: 100%;
+    max-width: 390px; /* Maximum width for the form */
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(to right, #d8e2f2, #e5e7f5);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for the form */
+    color: black;
+  }
+
+  /* Label Styling */
+  .form-group label {
+    font-size: 15px; /* Medium font size for labels */
+    font-weight: 500; /* Regular weight for labels */
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  /* Input Field Styling */
+  .form-control {
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1.5px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: black;
+    background-color: #fff;
+  }
+
+  /* Button Styling */
+  .btn-info {
+    width: 100%;
+    padding: 12px;
+    background-color: #00a86b; /* Green button */
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-info:hover {
+    background-color: #007f4f;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 24px;
+    }
+
+    .form-container {
+      width: 90%; /* Ensures the form is responsive */
+    }
+
+    .subheading {
+      font-size: 14px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+    }
+
+    .form-control {
+      font-size: 13px;
+    }
+
+    .btn-info {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<!-- Form Section -->
+<br />
+<h2>Fertilizer Recommendation</h2>
+<br />
+<p class="subheading">Get informed advice on fertilizer based on soil.</p>
+
+<!-- Form container -->
+<div class="form-container">
+  <form method="POST" action="{{ url_for('fert_recommend') }}">
+    <div class="form-group">
+      <label for="Nitrogen"><b>Nitrogen</b></label>
+      <input
+        type="number"
+        class="form-control"
+        id="Nitrogen"
+        name="nitrogen"
+        placeholder="Enter the value (example: 50)"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="Phosphorous"><b>Phosphorous</b></label>
+      <input
+        type="number"
+        class="form-control"
+        id="Phosphorous"
+        name="phosphorous"
+        placeholder="Enter the value (example: 50)"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="Pottasium"><b>Pottasium</b></label>
+      <input
+        type="number"
+        class="form-control"
+        id="Pottasium"
+        name="pottasium"
+        placeholder="Enter the value (example: 50)"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="crop"><b>Crop you want to grow</b></label>
+      <select name="cropname" class="form-control" id="crop" required>
+        <option selected>Select crop</option>
+        <option>rice</option>
+        <option>maize</option>
+        <option>chickpea</option>
+        <option>kidneybeans</option>
+        <option>pigeonpeas</option>
+        <option>mothbeans</option>
+        <option>mungbean</option>
+        <option>blackgram</option>
+        <option>lentil</option>
+        <option>pomegranate</option>
+        <option>banana</option>
+        <option>mango</option>
+        <option>grapes</option>
+        <option>watermelon</option>
+        <option>muskmelon</option>
+        <option>apple</option>
+        <option>orange</option>
+        <option>papaya</option>
+        <option>coconut</option>
+        <option>cotton</option>
+        <option>jute</option>
+        <option>coffee</option>
+      </select>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-info">Predict</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

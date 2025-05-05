@@ -1,0 +1,385 @@
+{% extends 'layout.html' %} {% block body %}
+
+<style>
+  /* Apply the same gradient to the body and all sections */
+  body {
+    background: linear-gradient(
+      135deg,
+      #f0fdf4,
+      #e0f2fe
+    ) !important; /* Same gradient */
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  /* Apply the gradient to the banner and other sections */
+  .banner-section,
+  #about,
+  #services {
+    background: linear-gradient(
+      135deg,
+      #f0fdf4,
+      #e0f2fe
+    ) !important; /* Same gradient for all sections */
+  }
+
+  /* Ensuring text remains visible with dark color */
+  .text-dark {
+    color: #333 !important;
+  }
+
+  /* Padding for better spacing and margin */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Style for cards in services */
+  .card {
+    margin-bottom: 30px;
+    height: 300px; /* Reduced card height */
+    overflow: hidden; /* Ensures content doesn't overflow */
+  }
+
+  .card-img-top {
+    height: 120px; /* Adjust image height */
+    object-fit: cover; /* Ensures the image is properly scaled */
+  }
+
+  .card-body {
+    padding: 15px;
+    flex-grow: 1;
+  }
+
+  .btn-primary-custom {
+    background-color: #4caf50; /* Primary button color */
+  }
+
+  .btn-outline-dark {
+    border-color: #333; /* Border for "Learn More" button */
+  }
+
+  .highlighted-text {
+    background: linear-gradient(45deg, #fa7d7d, #333333, #555555);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-weight: bold;
+  }
+</style>
+
+<!-- Banner Section -->
+<section
+  class="banner-section d-flex align-items-center"
+  id="home"
+  style="min-height: 90vh"
+>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 text-dark">
+        <h1 class="display-4 fw-bold">
+          <span class="highlighted-text">FarmVeda</span> Insight
+        </h1>
+        <h3 class="mt-3 mb-4">
+          Welcome to <span class="highlighted-text">FarmVeda</span> - Nurturing
+          Tomorrow's Harvest.
+        </h3>
+        <p>
+          We help farmers make smart choices about crop cultivation, fertilizer
+          use, disease prediction, and soil analysis.
+        </p>
+        <h5 class="mt-3 mb-4">
+          <span class="highlighted-text">Your Farm's Future Starts Here</span>
+        </h5>
+        <div class="d-flex gap-3 mt-4">
+          <a href="#services" class="btn btn-primary-custom"
+            >Get Recommendations</a
+          >
+          <a href="#about" class="btn btn-outline-dark">Learn More</a>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="ratio ratio-16x9 rounded shadow overflow-hidden">
+          <video
+            id="heroVideo"
+            controls
+            muted
+            loop
+            poster="{{ url_for('static', filename='images/fallback.jpg') }}"
+            class="w-100 h-100 object-cover"
+          >
+            <source
+              src="{{ url_for('static', filename='videos/farming.mp4') }}"
+              type="video/mp4"
+            />
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Us -->
+<section id="about" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">About Us</h2>
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <img
+          src="{{ url_for('static', filename='images/core.jpg') }}"
+          class="img-fluid rounded shadow"
+          style="height: 350px; width: 95%; object-fit: cover"
+          alt="Core Values"
+        />
+      </div>
+      <div class="col-lg-7">
+        <h4 class="fw-bold mt-4 mt-lg-0">
+          <span class="highlighted-text"
+            >Improving Agriculture, Improving Lives</span
+          >
+        </h4>
+        <p class="mt-3" style="font-size: 1rem; line-height: 1.6">
+          At <span class="highlighted-text">FarmVeda</span>, our mission is to
+          modernize agriculture through AI-driven solutions by empowering
+          farmers, ensuring sustainable farming.
+        </p>
+        <p style="font-size: 1rem; line-height: 1.6">
+          Our tools are designed to be easy to use, accessible, and impactful
+          for the future of farming.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services" class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-5">Our Services</h2>
+    <div class="row g-4">
+      <!-- Crop Recommendation -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center p-3 shadow-sm">
+          <img
+            src="static/images/s3.jpg"
+            class="card-img-top rounded"
+            style="height: 150px; object-fit: cover"
+            alt="Crop Recommendation"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Crop Recommendation</h5>
+            <p class="card-text flex-grow-1">
+              Find the best crops to grow based on your region's soil and
+              climate conditions.
+            </p>
+            <a
+              href="{{ url_for('crop_recommend') }}"
+              class="btn btn-primary-custom mt-auto"
+              >Crop Recommendation</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Fertilizer -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center p-3 shadow-sm">
+          <img
+            src="static/images/s2.jpg"
+            class="card-img-top rounded"
+            style="height: 150px; object-fit: cover"
+            alt="Fertilizer"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Fertilizer Recommendation</h5>
+            <p class="card-text flex-grow-1">
+              Optimize your crop yield with expert fertilizer recommendations
+              tailored to your soil type.
+            </p>
+            <a
+              href="{{ url_for('fertilizer_recommendation') }}"
+              class="btn btn-primary-custom mt-auto"
+              >Fertilizer Recommendation</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Disease Detection -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center p-3 shadow-sm">
+          <img
+            src="static/images/s4.jpg"
+            class="card-img-top rounded"
+            style="height: 150px; object-fit: cover"
+            alt="Disease Detection"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Crop Disease Detection</h5>
+            <p class="card-text flex-grow-1">
+              Early detection of crop diseases to protect your harvest and
+              reduce losses.
+            </p>
+            <a
+              href="{{ url_for('disease_prediction') }}"
+              class="btn btn-primary-custom mt-auto"
+              >Disease Detection</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- Soil Analysis -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card h-100 text-center p-3 shadow-sm">
+          <img
+            src="static/images/soil.jpg"
+            class="card-img-top rounded"
+            style="height: 150px; object-fit: cover"
+            alt="Soil Analysis"
+          />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">Soil Analysis</h5>
+            <p class="card-text flex-grow-1">
+              Analyze your soil’s composition through images and get
+              personalized advice for better farming.
+            </p>
+            <a
+              href="{{ url_for('soil_form') }}"
+              class="btn btn-primary-custom mt-auto"
+              >Soil Analysis</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Detailed Features -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Detailed Features</h2>
+
+    <!-- Disease Detection -->
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-6">
+        <img
+          src="static/images/disease.jpg"
+          class="img-fluid rounded shadow"
+          style="height: 260px; width: 82%; object-fit: cover"
+          alt="Disease Detection"
+        />
+      </div>
+      <div class="col-lg-6">
+        <h4 class="fw-bold mt-4">AI-Powered Disease Detection</h4>
+        <p class="mt-3">
+          Upload images of your crops and let our AI model detect early signs of
+          diseases. Accurate and fast results help reduce crop damage and save
+          costs.
+        </p>
+        <a
+          href="{{ url_for('disease_prediction') }}"
+          class="btn btn-primary-custom mt-3 me-2"
+          >Detect Disease</a
+        >
+        <a
+          href="http://frontiersin.org/journals/plant-science/articles/10.3389/fpls.2024.1356260/full"
+          class="btn btn-outline-secondary mt-3"
+          target="_blank"
+          >Get More Info</a
+        >
+      </div>
+    </div>
+
+    <!-- Soil Analysis -->
+    <div class="row align-items-center mb-5 flex-lg-row-reverse">
+      <div class="col-lg-6">
+        <img
+          src="static/images/soil.jpg"
+          class="img-fluid rounded shadow"
+          style="height: 260px; width: 82%; object-fit: cover"
+          alt="Soil Analysis"
+        />
+      </div>
+      <div class="col-lg-6">
+        <h4 class="fw-bold mt-4">Soil Health Analysis</h4>
+        <p class="mt-3">
+          Capture soil images and get real-time analysis of texture, color, and
+          composition. Our tool suggests suitable fertilizers and crops.
+        </p>
+        <a
+          href="{{ url_for('soil_form') }}"
+          class="btn btn-primary-custom mt-3 me-2"
+          >Analyse Soil</a
+        >
+        <a
+          href="https://soilhealth.dac.gov.in/"
+          class="btn btn-outline-secondary mt-3"
+          target="_blank"
+          >Get More Info</a
+        >
+      </div>
+    </div>
+
+    <!-- Crop Recommendation -->
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-6">
+        <img
+          src="static/images/s3.jpg"
+          class="img-fluid rounded shadow"
+          style="height: 260px; width: 82%; object-fit: cover"
+          alt="Crop Recommendation"
+        />
+      </div>
+      <div class="col-lg-6">
+        <h4 class="fw-bold mt-4">Crop Recommendation System</h4>
+        <p class="mt-3">
+          Based on weather and soil conditions, our system recommends the most
+          profitable and suitable crops for your region.
+        </p>
+        <a
+          href="{{ url_for('crop_recommend') }}"
+          class="btn btn-primary-custom mt-3 me-2"
+          >Recommend Crop</a
+        >
+        <a
+          href="https://mkisan.gov.in/"
+          class="btn btn-outline-secondary mt-3"
+          target="_blank"
+          >Get More Info</a
+        >
+      </div>
+    </div>
+
+    <!-- Fertilizer Recommendation -->
+    <div class="row align-items-center mb-5 flex-lg-row-reverse">
+      <div class="col-lg-6">
+        <img
+          src="static/images/s2.jpg"
+          class="img-fluid rounded shadow"
+          style="height: 260px; width: 82%; object-fit: cover"
+          alt="Fertilizer Recommendation"
+        />
+      </div>
+      <div class="col-lg-6">
+        <h4 class="fw-bold mt-4">Fertilizer Recommendation Engine</h4>
+        <p class="mt-3">
+          Get data-driven fertilizer suggestions to maximize yield and soil
+          health sustainability.
+        </p>
+        <a
+          href="{{ url_for('fertilizer_recommendation') }}"
+          class="btn btn-primary-custom mt-3 me-2"
+          >Recommend Fertilizer</a
+        >
+        <a
+          href="https://farmer.gov.in/Fertilizers.aspxhttps://www.icl-group.com/blog/fertilizers-the-basics/"btn btn-outline-secondary mt-3"
+          target="_blank"
+          >Get More Info</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

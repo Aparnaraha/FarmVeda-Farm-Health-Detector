@@ -1,0 +1,113 @@
+{% extends 'layout.html' %} {% block body %}
+
+<style>
+  html,
+  body {
+    background-color: rgb(206, 206, 228); /* Light background */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Container Styling */
+  .result-container {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 25px 20px;
+    background: linear-gradient(
+      to right,
+      #d8e2f2,
+      #e5e7f5
+    ); /* Gradient background */
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Heading Styling */
+  h2 {
+    text-align: center;
+    color: rgb(224, 13, 13); /* Red color for the heading */
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  /* Result Styling */
+  .result-info {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+  }
+
+  .result-info p {
+    margin-bottom: 15px;
+  }
+
+  /* Button Styling */
+  .btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: #00a86b;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+    transition: background-color 0.3s ease;
+    text-align: center;
+  }
+
+  .btn-primary:hover {
+    background-color: #007f4f;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .result-container {
+      width: 90%;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    .result-info {
+      font-size: 16px;
+    }
+
+    .btn-primary {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<br /><br />
+<!-- Result Page Content -->
+<div class="result-container">
+  <h2><b>Soil Type Prediction Result</b></h2>
+
+  <div class="result-info">
+    <p><strong>Predicted Soil Type:</strong> {{ soil_type }}</p>
+    <p><strong>Soil is Healthy to Grow Crops like:</strong> {{ crops }}</p>
+  </div>
+
+  <!-- Button to try another image -->
+  <div class="text-center">
+    <a
+      href="{{ url_for('soil_form') }}"
+      class="btn btn-primary"
+      style="margin-top: 20px"
+    >
+      Try Another Image
+    </a>
+  </div>
+</div>
+
+{% endblock %}

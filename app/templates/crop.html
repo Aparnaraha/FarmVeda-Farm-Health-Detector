@@ -1,0 +1,200 @@
+{% extends 'layout.html' %} {% block body %}
+
+<style>
+  html body {
+    background-color: rgb(206, 206, 228);
+    font-family: Arial, sans-serif;
+  }
+
+  h2 {
+    text-align: center;
+    color: rgb(224, 13, 13);
+    font-size: 28px;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .subheading {
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 390px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(to right, #d8e2f2, #e5e7f5);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: black;
+  }
+
+  .form-group label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .form-control {
+    font-weight: 400;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1.5px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: black;
+    background-color: #fff;
+  }
+
+  .btn-info {
+    width: 100%;
+    padding: 12px;
+    background-color: #00a86b;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-info:hover {
+    background-color: #007f4f;
+  }
+
+  @media (max-width: 768px) {
+    h2 {
+      font-size: 24px;
+    }
+
+    .form-container {
+      width: 90%;
+    }
+
+    .subheading {
+      font-size: 14px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+    }
+
+    .form-control {
+      font-size: 13px;
+    }
+
+    .btn-info {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<!-- Form Section -->
+<br />
+<h2><b>Crop Recommendation</b></h2>
+<p class="subheading">Find out the most suitable crop to grow in your farm</p>
+<br />
+
+<div class="form-container">
+  <form method="POST" action="{{ url_for('crop_prediction') }}">
+    <div class="form-group">
+      <label for="Nitrogen"><b>Nitrogen</b></label>
+      <input
+        type="number"
+        class="form-control"
+        id="Nitrogen"
+        name="nitrogen"
+        placeholder="Enter the value (example: 50)"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="Phosphorous"><b>Phosphorous</b></label>
+      <input
+        type="number"
+        class="form-control"
+        id="Phosphorous"
+        name="phosphorous"
+        placeholder="Enter the value (example: 50)"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="Pottasium"><b>Pottasium</b></label>
+      <input
+        type="number"
+        class="form-control"
+        id="Pottasium"
+        name="pottasium"
+        placeholder="Enter the value (example: 50)"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="ph"><b>pH Level</b></label>
+      <input
+        type="number"
+        step="0.01"
+        class="form-control"
+        id="ph"
+        name="ph"
+        placeholder="Enter the value"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="Rainfall"><b>Rainfall (in mm)</b></label>
+      <input
+        type="number"
+        step="0.01"
+        class="form-control"
+        id="Rainfall"
+        name="rainfall"
+        placeholder="Enter the value"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="State"><b>State</b></label>
+      <select
+        onchange="print_city('state', this.selectedIndex);"
+        id="sts"
+        name="stt"
+        class="form-control"
+        required
+      >
+        <option value="">Select State</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="City"><b>City</b></label>
+      <select id="state" class="form-control" name="city" required>
+        <option value="">Select City</option>
+      </select>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-info">Predict</button>
+    </div>
+  </form>
+</div>
+
+<!-- Include cities.js -->
+<script src="{{ url_for('static', filename='scripts/cities.js') }}"></script>
+
+<script>
+  print_state("sts");
+</script>
+
+{% endblock %}

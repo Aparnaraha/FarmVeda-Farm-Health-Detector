@@ -1,0 +1,63 @@
+{% extends 'layout.html' %} {% block body %}
+
+<!-- Container with proper alignment and spacing -->
+<div class="container py-3 mx-auto my-5" style="margin-top: 9rem">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 py-2 py-md-3">
+      <!-- Card with gradient background, rounded corners, and box shadow -->
+      <div
+        class="card card-body"
+        style="
+          background: linear-gradient(to right, #d8e2f2, #e5e7f5);
+          border-radius: 15px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+        "
+      >
+        <!-- Heading Styling -->
+        <h2
+          class="text-center"
+          style="color: rgb(224, 13, 13); font-size: 24px; font-weight: 600"
+        >
+          Recommendation Result
+        </h2>
+
+        <!-- Subheading Styling -->
+        <p
+          class="text-center"
+          style="
+            color: rgb(224, 13, 13);
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 20px;
+          "
+        >
+          Here’s the recommended action for your plant:
+        </p>
+
+        <!-- Recommendation text with highlighted part -->
+        <p
+          class="text-center"
+          style="
+            color: #333;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.5;
+          "
+        >
+          <span
+            style="
+              color: rgb(28, 27, 27);
+              font-size: 15px;
+              font-weight: lighter;
+            "
+            >{{ recommendation }}</span
+          >
+          <!-- The recommendation part is highlighted in red -->
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

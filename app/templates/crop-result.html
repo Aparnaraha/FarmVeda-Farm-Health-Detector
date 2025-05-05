@@ -1,0 +1,66 @@
+{% extends 'layout.html' %} {% block body %}
+
+<style>
+  html,
+  body {
+    background-color: rgb(206, 206, 228);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .result-container {
+    width: 100%;
+    max-width: 420px;
+    margin: 6rem auto;
+    padding: 25px 20px;
+    background: linear-gradient(to right, #d8e2f2, #e5e7f5);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  h1 {
+    text-align: center;
+    color: rgb(40, 38, 38);
+    font-size: 22px;
+    font-weight: 300;
+    margin: 0;
+  }
+  h2 {
+    text-align: center;
+    color: rgb(224, 13, 13);
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  i {
+    color: rgb(224, 13, 13);
+    font-weight: bold;
+    font-size: 26px;
+  }
+  @media (max-width: 768px) {
+    .result-container {
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<!-- Crop Prediction Result -->
+<div class="result-container">
+  <h2>Crop Recommended</h2>
+  <h1>
+    <b>You should grow <i>{{ prediction }}</i> in your farm</b>
+  </h1>
+</div>
+
+{% endblock %}

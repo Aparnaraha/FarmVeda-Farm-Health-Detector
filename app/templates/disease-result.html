@@ -1,0 +1,47 @@
+{% extends 'layout.html' %} {% block body %}
+
+<!-- Container with proper alignment and spacing -->
+<div class="container py-3 mx-auto my-5" style="margin-top: 9rem">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 py-2 py-md-3">
+      <!-- Card with a subtle background and rounded corners -->
+      <div
+        class="card card-body"
+        style="
+          background-color: #f4f6f9;
+          border-radius: 12px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <h2
+          style="
+            text-align: center;
+            color: rgb(224, 13, 13); /* Red color for the heading */
+            font-size: 24px;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 10px;
+          "
+        >
+          Detected Result
+        </h2>
+        <!-- Prediction text with updated styling -->
+        <p
+          class="text-center"
+          9
+          style="
+            color: rgb(232, 11, 11);
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.5;
+          "
+        >
+          <strong style="color: black">{{ prediction }}</strong>
+          <!-- Important part highlighted in black -->
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
